@@ -218,12 +218,15 @@ async def setup_server(interaction: discord.Interaction):
         # Reorder created roles to follow the reference hierarchy (highest first).
         # The bot's own role still needs to sit above this entire group.
         role_positions = {}
+                # Reorder created roles to follow the reference hierarchy (highest first).
+        # The bot's own role still needs to sit above this entire group.
+        role_positions = {}
         bot_member = guild.me
 
-if bot_member is None:
-    bot_member = await guild.fetch_member(bot.user.id)
+        if bot_member is None:
+            bot_member = await guild.fetch_member(interaction.client.user.id)
 
-top_position = max(1, bot_member.top_role.position - 1)
+        top_position = max(1, bot_member.top_role.position - 1)
         for index, (name, _color, _kind) in enumerate(ROLE_DEFINITIONS):
             role = role_map[name]
             target = top_position - index
