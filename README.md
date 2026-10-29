@@ -31,25 +31,27 @@ highest role.
 
 1. Upload these files to a GitHub repository.
 2. In Render, choose **New + > Blueprint** and connect that repository.
-3. Render reads `render.yaml` and creates a Background Worker.
-4. In the Render service's Environment tab, set `DISCORD_TOKEN` to your bot token.
+3. Render reads `render.yaml` and creates a **Web Service** (not a Background Worker).
+4. In the Render service's Environment tab, set `DISCORD_TOKEN` to your bot token. `GUILD_ID` is prefilled as `717167928255971351`, and `OWNER_ID` is prefilled as `694270550524035112`.
 5. Deploy. Check the Logs tab; the bot should log in and sync `/setup`.
 
-You can also create a **Background Worker** manually:
+If creating the service manually, choose **Web Service** (not Background Worker):
 - Runtime: Python
 - Build command: `pip install -r requirements.txt`
 - Start command: `python main.py`
+- Health check path: `/health`
 - Environment variables:
   - `DISCORD_TOKEN` = your bot token
   - `GUILD_ID` = `717167928255971351`
+  - `OWNER_ID` = `694270550524035112`
 
 ## 4. Run setup
 
-In VANTA HUB, run `/setup` as a server administrator. It creates missing roles,
+In VANTA HUB, run `/setup`. Your Discord account (`694270550524035112`) is configured as the bot owner and can run it; server administrators can also run it. It creates missing roles,
 categories and channels, and reuses existing matching names. It does not delete
 anything or move members.
 
-Use `/setup_status` to check the bot.
+Use `/setup_status` to check the bot. Render checks the web endpoint at `/health`; opening the service URL should return a small JSON status response.
 
 ## Notes and limitations
 

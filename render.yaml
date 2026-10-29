@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: vanta-hub-server-creator
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: GUILD_ID
+        value: "717167928255971351"
+      - key: OWNER_ID
+        value: "694270550524035112"
