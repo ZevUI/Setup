@@ -11,7 +11,7 @@ logging.basicConfig(
 log = logging.getLogger("vanta-hub")
 
 TOKEN = os.getenv("DISCORD_TOKEN")
-GUILD_ID = int(os.getenv("GUILD_ID", "717167928255971351"))
+GUILD_ID = int(os.getenv("GUILD_ID", "694270550524035112"))
 
 if not TOKEN:
     raise RuntimeError("Missing DISCORD_TOKEN environment variable.")
